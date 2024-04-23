@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form by Jeff </title>
+
+    <!-- Font Icon -->
+   <link rel="stylesheet" href="{{url_for('auth.static', filename='fonts/material-icon/css/material-design-iconic-font.min.css')}}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{{url_for('auth.static',filename='css/style.css')}}">
+     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap-theme.min.css">
+</head>
+<body>
+
+    <div class="main">
+
+        <section class="signup">
+            <!-- <img src="images/signup-bg.jpg" alt=""> -->
+            <div class="container">
+                <div class="signup-content">
+                    <form method="POST" id="signup-form" class="signup-form">
+                        <h2 class="form-title">Create account</h2>
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                                {% for category, message in messages %}
+                                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                                         {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                        <div class="form-group">
+                            {% if name_error %}
+                                <input type="text" class="form-input" name="name" id="name" placeholder="Your Name" value="{{name}}" style="border-color: red;"/>
+                            {% else %}
+                                <input type="text" class="form-input" name="name" id="name" placeholder="Your Name" value="{{name}}"/>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {% if email_error %}
+                                <input type="email" class="form-input" name="email" id="email" placeholder="Your Email" value="{{email}}" style="border-color:red;"/>
+                            {% else %}
+                                <input type="email" class="form-input" name="email" id="email" placeholder="Your Email" value="{{email}}"/>
+                            
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {% if password_error %}
+                                <input type="text" class="form-input" name="password" id="password" placeholder="Password" value="{{password}}" style="border-color:red;"/>
+                            {% else %}
+                                <input type="text" class="form-input" name="password" id="password" placeholder="Password" value="{{password}}"/>
+                            {% endif %}
+                            <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
+                        </div>
+                        <div class="form-group">
+                            {% if password_error %}
+                                <input type="password" class="form-input" name="re_password" id="re_password" placeholder="Repeat your password" style="border-color:red;"/>
+                            {% else %}
+                                <input type="password" class="form-input" name="re_password" id="re_password" placeholder="Repeat your password"/>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                            <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="submit" id="submit" class="form-submit" value="Create Account"/>
+                        </div>
+                    </form>
+                    <p class="loginhere">
+                        Have already an account ? <a href="{{url_for('auth.login')}}" class="loginhere-link">Login here</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- JS -->
+     <script src="{{url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+</body>
+</html>
